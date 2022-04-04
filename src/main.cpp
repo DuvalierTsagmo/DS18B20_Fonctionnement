@@ -148,7 +148,7 @@ void loop(void)
 
             // Envoi des données sur TB
             printAddress(tempDeviceAddress);
-            appendPayload(adresseCapteur, tempC);
+            appendPayload("DS18B20_" + adresseCapteur, tempC);
             sendPayload();
         }
         // else ghost device! Check your power requirements and cabling
@@ -167,37 +167,3 @@ void printAddress(DeviceAddress deviceAddress)
         adresseCapteur = adresseCapteur + String(deviceAddress[i], HEX);
     }
 }
-/*
-
-void setup(void)
-{
-    Serial.begin(9600);
-    wifiConnect(); // Branchement au réseau WIFI
-    MQTTConnect(); // Branchement au broker MQTT
-    sensors.begin();
-}
-
-
-void loop(void)
-{
-    sensors.requestTemperatures();
-
-    Serial.print("Capteur 1: ");
-    printTemperature(sensor1);
-
-    idCapteur1 = sensor1[7];
-    idCapteur2 = sensor2[7];
-
-    Serial.print("Capteur 2: ");
-    printTemperature(sensor2);
-
-    Serial.println();
-
-    appendPayload(idCapteur1, sensors.getTempC(sensor1));
-    appendPayload(idCapteur2, sensors.getTempC(sensor2));
-    sendPayload();
-
-    delay(1000);
-}
-
-*/
